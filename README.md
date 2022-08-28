@@ -13,7 +13,7 @@ helm repo update
 helm search repo democratic-csi/
 
 
-https://raw.githubusercontent.com/exodus454/democratic-csi/master/ready-to-go/freenas-nfs-yaml
+https://raw.githubusercontent.com/exodus454/democratic-csi/master/ready-to-go/freenas-nfs.yaml
 
 
 helm upgrade \

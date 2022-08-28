@@ -67,4 +67,3 @@ nfs:
   shareMaprootGroup: apps
   shareMapallUser: ""
   shareMapallGroup: ""
-  nfsvers : 4
