@@ -7,13 +7,21 @@
 Notes
 
 
-
+#### v3!!!!!!!!!!
 helm repo add democratic-csi https://democratic-csi.github.io/charts/
 helm repo update
 helm search repo democratic-csi/
 
 
-wget https://raw.githubusercontent.com/exodus454/charts/master/stable/democratic-csi/examples/freenas-nfs.yaml
+https://raw.githubusercontent.com/exodus454/democratic-csi/master/ready-to-go/freenas-nfs-yaml
+
+
+helm upgrade \
+--install \
+--values freenas-nfs.yaml \
+--namespace democratic-csi \
+zfs-nfs democratic-csi/democratic-csi
+
 
 `democratic-csi` implements the `csi` (container storage interface) spec
 providing storage for various container orchestration systems (ie: Kubernetes).
