@@ -13,14 +13,15 @@ helm repo update
 helm search repo democratic-csi/
 
 
-https://raw.githubusercontent.com/exodus454/democratic-csi/master/ready-to-go/freenas-nfs.yaml
+https://raw.githubusercontent.com/exodus454/democratic-csi/master/ready-to-go/freenas-nfs-merged.yaml
 
 
 helm upgrade \
---install \
---values freenas-nfs.yaml \
---namespace democratic-csi \
-zfs-nfs democratic-csi/democratic-csi
+                --install --create-namespace \
+                --values freenas-nfs-merged.yaml \
+                --namespace democratic-csi \
+                zfs-nfs democratic-csi/democratic-csi
+
 
 
 `democratic-csi` implements the `csi` (container storage interface) spec
