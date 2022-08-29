@@ -29,9 +29,8 @@ driver:
       protocol: http
       host: 192.168.0.170
       port: 81
-      apiKey: 2-Sykj2qD1Bb7xZzCddk1qcJfbB4zysx3xejdOJ01J7cabhpNpV8Wavodrre2iF9Xt
-      #  username: root
-      # password: bmw
+      username: root
+      password: bmw
       allowInsecure: true
       apiVersion: 2
     sshConnection:
