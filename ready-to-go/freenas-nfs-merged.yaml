@@ -51,7 +51,7 @@ driver:
       datasetPermissionsUser: root
       datasetPermissionsGroup: apps
     nfs:
-      shareHost: 192.168.0.170
+      shareHost: nfs.truenas.lan
       shareAlldirs: false
       shareAllowedHosts: []
       shareAllowedNetworks: []
