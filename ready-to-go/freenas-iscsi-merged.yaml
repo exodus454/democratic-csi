@@ -5,8 +5,8 @@ csiDriver:
 # add note here about volume expansion requirements
 storageClasses:
 - name: freenas-iscsi-csi
-  defaultClass: false
-  reclaimPolicy: Retain
+  defaultClass: true
+  reclaimPolicy: Delete
   volumeBindingMode: Immediate
   allowVolumeExpansion: true
   parameters:
@@ -23,7 +23,7 @@ storageClasses:
 
 driver:
   config:
-    driver: freenas-iscsi
+    driver: freenas-api-iscsi
     instance_id:
     httpConnection:
       protocol: http
@@ -55,6 +55,10 @@ driver:
       # https://www.ixsystems.com/documentation/freenas/11.2-U5/storage.html#zfs-zvol-config-opts-tab
       # standard volume naming overhead is 46 chars
       # datasetParentName should therefore be 17 chars or less
+      datasetProperties:
+        "org.freenas:description": "{{ parameters.[csi.storage.k8s.io/pvc/namespace] }}/{{ parameters.[csi.storage.k8s.io/pvc/name] }}"
+      #  "org.freenas:test": "{{ parameters.foo }}"
+      #  "org.freenas:test2": "some value"      
       datasetParentName: ssd0/scsi/v
       detachedSnapshotsDatasetParentName: ssd0/iscsi/s
       # "" (inherit), lz4, gzip-9, etc
@@ -69,8 +73,9 @@ driver:
       targetPortals: []
       # leave empty to omit usage of -I with iscsiadm
       interface:
+      nameTemplate: "{{ parameters.[csi.storage.k8s.io/pvc/namespace] }}-{{ parameters.[csi.storage.k8s.io/pvc/name] }}"
       namePrefix: rke2-
-      nameSuffix: "-cluster"
+      nameSuffix: -cluster
       # add as many as needed
       targetGroups:
         # get the correct ID from the "portal" section in the UI
