@@ -24,7 +24,7 @@ storageClasses:
 
 driver:
   config:
-    driver: freenas-iscsi
+    driver: freenas-api-iscsi
     instance_id:
     httpConnection:
       protocol: http
@@ -34,7 +34,7 @@ driver:
       username: root
       password: bmw
       allowInsecure: true
-     sshConnection:
+    sshConnection:
       host: 192.168.0.170
       port: 22
       username: root
