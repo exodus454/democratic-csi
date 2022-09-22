@@ -11,10 +11,10 @@ storageClasses:
   allowVolumeExpansion: true
   parameters:
     # for block-based storage can be ext3, ext4, xfs
-    fsType: ext4
+    fsType: xfs
 
   mountOptions:
-  - fsck
+  - xfs_repair
   secrets:
     provisioner-secret:
     controller-publish-secret:
@@ -34,7 +34,7 @@ driver:
       username: root
       password: bmw
       allowInsecure: true
-      apiVersion: 2
+      #apiVersion: 2
         #      privateKey: |
         #        -----BEGIN RSA PRIVATE KEY-----
         #        ...
@@ -46,7 +46,7 @@ driver:
         paths:
           #zfs: /usr/sbin/zfs
           #zpool: /usr/sbin/zpool
-          #sudo: /usr/bin/sudo
+          sudo: /usr/bin/sudo
           #chroot: /usr/sbin/chroot
       # total volume name (zvol/<datasetParentName>/<pvc name>) length cannot exceed 63 chars
       # https://www.ixsystems.com/documentation/freenas/11.2-U5/storage.html#zfs-zvol-config-opts-tab
