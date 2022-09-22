@@ -48,14 +48,14 @@ driver:
       datasetEnableQuotas: true
       datasetEnableReservation: false
       datasetPermissionsMode: "0777"
-      datasetPermissionsUser: 0
-      datasetPermissionsGroup: 0
+      datasetPermissionsUser: root
+      datasetPermissionsGroup: apps
     nfs:
-      shareHost: 192.168.0.170
+      shareHost: nfs.truenas.lan
       shareAlldirs: false
       shareAllowedHosts: []
       shareAllowedNetworks: []
-      shareMaprootUser: "root"
-      shareMaprootGroup: "root"
+      shareMaprootUser: ""
+      shareMaprootGroup: ""
       shareMapallUser: ""
       shareMapallGroup: ""
