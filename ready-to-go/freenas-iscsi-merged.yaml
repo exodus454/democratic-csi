@@ -6,7 +6,7 @@ csiDriver:
 storageClasses:
 - name: freenas-iscsi-csi
   defaultClass: true
-  reclaimPolicy: Delete
+  reclaimPolicy: Retain
   volumeBindingMode: Immediate
   allowVolumeExpansion: true
   parameters:
@@ -73,14 +73,9 @@ driver:
       targetPortals: []
       # leave empty to omit usage of -I with iscsiadm
       interface:
-<<<<<<< HEAD
-      namePrefix: csi-
-      nameSuffix: "-cluster"
-=======
       nameTemplate: "{{ parameters.[csi.storage.k8s.io/pvc/namespace] }}-{{ parameters.[csi.storage.k8s.io/pvc/name] }}"
       namePrefix: rke2-
       nameSuffix: -cluster
->>>>>>> parent of 61a0694 (Revert "po[")
       # add as many as needed
       targetGroups:
         # get the correct ID from the "portal" section in the UI
