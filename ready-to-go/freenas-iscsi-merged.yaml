@@ -14,7 +14,7 @@ storageClasses:
     fsType: xfs
 
   mountOptions:
-    - fsck
+  - fsck
   secrets:
     provisioner-secret:
     controller-publish-secret:
@@ -71,12 +71,12 @@ driver:
       # 512, 1K, 2K, 4K, 8K, 16K, 64K, 128K default is 16K
       zvolBlocksize:
     iscsi:
-      targetPortal: "iscsi.truenas.lan:3260"
+      targetPortal: "192.168.0.170:3260"
       targetPortals: []
       # leave empty to omit usage of -I with iscsiadm
       interface:
       nameTemplate: "{{ parameters.[csi.storage.k8s.io/pvc/namespace] }}-{{ parameters.[csi.storage.k8s.io/pvc/name] }}"
-      namePrefix: rke2-
+      namePrefix: k3s-
       nameSuffix: -cluster
       # add as many as needed
       targetGroups:
