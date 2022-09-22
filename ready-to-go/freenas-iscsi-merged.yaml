@@ -13,7 +13,8 @@ storageClasses:
     # for block-based storage can be ext3, ext4, xfs
     fsType: xfs
 
-  mountOptions: []
+  mountOptions:
+    - fsck
   secrets:
     provisioner-secret:
     controller-publish-secret:
@@ -29,6 +30,7 @@ driver:
       protocol: http
       host: 192.168.0.170
       port: 81
+      apiKey: 2-8e29shKsFHLY6R9yOKeC6pgShx61VHjhsL45elndk4HwnQPGL4whgk6OEfApxSjd
       username: root
       password: bmw
       allowInsecure: true
