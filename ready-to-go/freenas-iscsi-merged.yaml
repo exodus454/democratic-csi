@@ -24,7 +24,7 @@ storageClasses:
 
 driver:
   config:
-    driver: freenas-api-iscsi
+    driver: freenas-iscsi
     instance_id:
     httpConnection:
       protocol: http
