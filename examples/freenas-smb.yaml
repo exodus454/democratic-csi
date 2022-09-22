@@ -91,7 +91,7 @@ zfs:
   #- -a group:builtin_users:modify_set:fd:allow
   #- -a group@:modify_set:fd:allow
   #- -a owner@:full_set:fd:allow
- 
+
 smb:
   shareHost: server address
   nameTemplate: ""
