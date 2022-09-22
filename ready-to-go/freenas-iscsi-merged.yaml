@@ -14,7 +14,7 @@ storageClasses:
     fsType: xfs
 
   mountOptions:
-  - fsck
+  - xfs_repair
   secrets:
     provisioner-secret:
     controller-publish-secret:
@@ -35,12 +35,6 @@ driver:
       password: bmw
       allowInsecure: true
       apiVersion: 2
-    sshConnection:
-      host: 192.168.0.170
-      port: 22
-      username: root
-      # use either password or key
-      password: "bmw"
         #      privateKey: |
         #        -----BEGIN RSA PRIVATE KEY-----
         #        ...
