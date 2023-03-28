@@ -2,14 +2,14 @@ driver: freenas-api-iscsi
 instance_id:
 httpConnection:
   protocol: http
-  host: server address
-  port: 80
+  host: 192.168.0.171
+  port: 81
   # use only 1 of apiKey or username/password
   # if both are present, apiKey is preferred
   # apiKey is only available starting in TrueNAS-12
-  #apiKey:
-  username: root
-  password:
+  apiKey:2-ebPL9Pog41o1UyCJo58Ebf5AcFPrjjkfjYTpkE4fn8rZWQrn53IbLoFpP8Y4jOyE
+  #username: root
+  #password:
   allowInsecure: true
   # use apiVersion 2 for TrueNAS-12 and up (will work on 11.x in some scenarios as well)
   # leave unset for auto-detection
@@ -19,7 +19,7 @@ zfs:persistence:
   # @default -- See below
   config:
     # -- Enables or disables the persistence item
-    enabled: false
+    enabled: true
 
     # -- Sets the persistence type
     # Valid options are pvc, emptyDir, hostPath, secret, configMap or custom
@@ -55,7 +55,7 @@ zfs:persistence:
     size: 1Gi
 
     # -- Set to true to retain the PVC upon `helm uninstall`
-    retain: false
+    retain: true
   # can be used to override defaults if necessary
   # the example below is useful for TrueNAS 12
   #cli:
@@ -70,8 +70,8 @@ zfs:persistence:
 
   # can be used to set arbitrary values on the dataset/zvol
   # can use handlebars templates with the parameters from the storage class/CO
-  #datasetProperties:
-  #  "org.freenas:description": "{{ parameters.[csi.storage.k8s.io/pvc/namespace] }}/{{ parameters.[csi.storage.k8s.io/pvc/name] }}"
+  datasetProperties:
+    "org.freenas:description": "{{ parameters.[csi.storage.k8s.io/pvc/namespace] }}/{{ parameters.[csi.storage.k8s.io/pvc/name] }}"
   #  "org.freenas:test": "{{ parameters.foo }}"
   #  "org.freenas:test2": "some value"
   
@@ -80,10 +80,10 @@ zfs:persistence:
   # standard volume naming overhead is 46 chars
   # datasetParentName should therefore be 17 chars or less when using TrueNAS 12 or below (SCALE and 13+ do not have the same limits)
   # for work-arounds see https://github.com/democratic-csi/democratic-csi/issues/54
-  datasetParentName: tank/k8s/b/vols
+  datasetParentName: ssd0/apps-mount/b/vols
   # do NOT make datasetParentName and detachedSnapshotsDatasetParentName overlap
   # they may be siblings, but neither should be nested in the other 
-  detachedSnapshotsDatasetParentName: tanks/k8s/b/snaps
+  detachedSnapshotsDatasetParentName: ssd0/apps-mount/b/snaps
   # "" (inherit), lz4, gzip-9, etc
   zvolCompression:
   # "" (inherit), on, off, verify
@@ -92,7 +92,7 @@ zfs:persistence:
   # 512, 1K, 2K, 4K, 8K, 16K, 64K, 128K default is 16K
   zvolBlocksize:
 iscsi:
-  targetPortal: "server[:port]"
+  targetPortal: "192.168.0.171:3260"
   # for multipath
   targetPortals: [] # [ "server[:port]", "server[:port]", ... ]
   # leave empty to omit usage of -I with iscsiadm
@@ -103,7 +103,7 @@ iscsi:
   # default is "{{ name }}"
   #nameTemplate: "{{ parameters.[csi.storage.k8s.io/pvc/namespace] }}-{{ parameters.[csi.storage.k8s.io/pvc/name] }}"
   namePrefix: csi-
-  nameSuffix: "-clustera"
+  nameSuffix: "-rke2"
 
   # add as many as needed
   targetGroups:
@@ -117,7 +117,7 @@ iscsi:
       # only required if using Chap
       targetGroupAuthGroup:
 
-  #extentCommentTemplate: "{{ parameters.[csi.storage.k8s.io/pvc/namespace] }}/{{ parameters.[csi.storage.k8s.io/pvc/name] }}"
+  extentCommentTemplate: "{{ parameters.[csi.storage.k8s.io/pvc/namespace] }}/{{ parameters.[csi.storage.k8s.io/pvc/name] }}"
   extentInsecureTpc: true
   extentXenCompat: false
   extentDisablePhysicalBlocksize: true
