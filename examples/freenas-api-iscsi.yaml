@@ -7,7 +7,7 @@ httpConnection:
   # use only 1 of apiKey or username/password
   # if both are present, apiKey is preferred
   # apiKey is only available starting in TrueNAS-12
-  apiKey:2-ebPL9Pog41o1UyCJo58Ebf5AcFPrjjkfjYTpkE4fn8rZWQrn53IbLoFpP8Y4jOyE
+  apiKey: 2-ebPL9Pog41o1UyCJo58Ebf5AcFPrjjkfjYTpkE4fn8rZWQrn53IbLoFpP8Y4jOyE
   #username: root
   #password:
   allowInsecure: true
